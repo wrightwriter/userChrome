@@ -1,0 +1,275 @@
+@import url("./simpleMenuWizard/blank-context.css");      /* ...a blank area on a webpage                    */
+@import url("./simpleMenuWizard/frame-context.css");      /* ...an iframe                                    */
+@import url("./simpleMenuWizard/image-context.css");      /* ...an image                                     */
+@import url("./simpleMenuWizard/input-context.css");      /* ...an input-field                               */
+@import url("./simpleMenuWizard/link-context.css");       /* ...a link                                       */
+@import url("./simpleMenuWizard/main-hamburger.css");     /* Leftclick the hamburger menu on top right       */
+@import url("./simpleMenuWizard/main-menubar.css");       /* Leftclick on main menubar (open with ALT key)   */
+@import url("./simpleMenuWizard/media-context.css");      /* ...media like audio or html5 video              */
+@import url("./simpleMenuWizard/select-context.css");     /* ...selected text or selected object             */
+@import url("./simpleMenuWizard/sidebar-context.css");    /* ...items in bookmarks- or history sidebar       */
+@import url("./simpleMenuWizard/sidebar-header.css");     /* Leftclick on sidebar header                     */
+@import url("./simpleMenuWizard/source-context.css");     /* ...a blank area when viewing source code        */
+@import url("./simpleMenuWizard/tab-context.css");        /* ...a tab                                        */
+@import url("./simpleMenuWizard/toolbar-context.css");    /* ...the toolbar or tabbar                        */
+@import url("./simpleMenuWizard/urlbar-context.css");     /* ...the addressbar                               */
+
+
+
+/* -- RIGHT CLICK -- */
+
+/* #context-openlinkintab,                 /* Open Link in New Tab             */
+/* #context-openlinkinusercontext-menu,    /* Open Link in New Container Tab   */
+#context-openlink,                      /* Open Link in New Window          */
+ #context-openlinkprivate,               /* Open Link in New Private Window  */
+/* #context-sep-open,                      /************ Separator *************/
+ #context-bookmarklink,                  /* Bookmark Link                    */
+/* #context-savelink,                      /* Save Link As…                    */
+/* #context-savelinktopocket,              /* Save Link to Pocket              */
+/* #context-copyemail,                     /* Copy Email Address               */
+/* #context-copylink,                      /* Copy Link                        */
+/* #context-sendlinktodevice,              /* Send Link to Device              */
+/* #context-sep-sendlinktodevice,          /************ Separator *************/
+/* #context-sep-copylink,                  /************ Separator *************/
+/* #context-searchselect,                  /* Search [Google] for "[selected]" */
+/* #frame-sep,                             /************ Separator *************/
+/* #context-inspect,                       /* Inspect (Q)                      */
+
+
+
+/* #context-reloadimage,             /* Reload Image                    */
+#context-viewimage,               /* Open Image in New Tab           */
+#context-saveimage,               /* Save Image As…                  */
+/* #context-copyimage-contents,      /* Copy Image                      */
+/* #context-copyimage,               /* Copy Image Link                 */
+#context-sendimage,               /* Email Image…                    */
+/* #context-sep-setbackground,       /************ Separator ************/
+ #context-setDesktopBackground,    /* Set As Desktop Background...    */
+/* #context-sep-ctp,                 /************ Separator ************/
+/* #context-inspect,                 /* Inspect (Q)                     */
+
+#context-viewsource,             /* View Page Source                     */
+#context-savepage,               /* Save Page As...                      */
+
+
+menu[label="Stylebot"],
+menu[label="uBlock Origin"],
+menuitem[label="Block element…"],
+menuitem[label="Block element"],
+menuitem[label="Save Image to Eagle (Z)"],
+menu#frame,                          /* This Frame    */
+
+#context-inspect-a11y, 
+#context-viewpartialsource-selection, 
+#context-take-screenshot, 
+#context-print-selection, 
+#context-selectall, 
+#context-copy, 
+#context-openlinkincurrent { 
+  display:none !important; 
+}
+
+/* -- MAIN HAMBURGER -- */
+#appMenu-protonMainView>vbox>toolbarseparator,
+#appMenu-new-tab-button2,                          /* New Tab                       */
+#appMenu-new-window-button2,                       /* New Window                    */
+#appMenu-new-private-window-button2,               /* New Private Window            */
+#appMenu-find-button2,                             /* Find In Page…                 */
+#appMenu-zoom-controls,                            /* Zoom                          */
+#appMenu-help-button2,                             /* Help                          */
+#appMenu-print-button2,                            /* Print…                        */
+#appMenu-help-button2 + toolbarseparator,          /*********** Separator ***********/
+#appMenu-quit-button2,                             /* Exit                          */
+#bruh
+{
+  display: none !important;
+}
+
+
+/* -- RIGHT CLICK -- */
+
+#menu_newNavigatorTab,                       /* New Tab                          */
+#menu_newUserContext,                        /* New Container Tab                */
+#menu_newNavigator,                          /* New Window                       */
+#menu_newPrivateWindow,                      /* New Private Window               */
+#bla
+{
+  display: none !important;
+}
+/* -- VARS -- */
+*{
+  --toolbarbutton-border-radius: 3px !important;
+  --panel-border-radius: 3px !important;
+  --arrowpanel-border-radius: 3px !important;;
+  --windows-panel-box-shadow: 0 0 2.3px hsla(0,0%,0%,.2) !important;
+}
+
+/* -- BOOKMARK ICONS -- */
+#personal-bookmarks .bookmark-item[type="menu"] .toolbarbutton-icon,
+#bookmarksMenuPopup .bookmark-item[type="menu"] .toolbarbutton-icon{
+ list-style-image: url("chrome://browser/skin/menu.svg");
+  fill: var(--toolbarbutton-icon-fill) !important;
+}
+
+
+/* -- HIDE SHIT -- */
+
+
+.tab-content{
+/*   display: none !important; */
+}
+tab,
+#tabbrowser-arrowscrollbox-periphery,
+#sidebar-header, 
+#star-button-box,
+/*#identity-box,*/
+#reader-mode-button,
+#tracking-protection-icon-container
+{
+  display: none;
+}
+
+/* -- RIGHT CLICK MENU -- */
+#context-navigation{
+  display: none !important;
+}
+menupopup {
+	-moz-appearance: none !important;
+  border-radius: 0px !important;
+}
+menuseparator {
+	-moz-appearance: none !important;
+  display: none !important;
+}
+menuitem, menu {
+	-moz-appearance: none !important;
+/* 	color: white !important; */
+  padding: 0.3rem 0.7rem !important;
+/* 	padding: 7.5px 0px 7.5px 0px !important; */
+}
+
+:is(panel, menupopup)::part(content) {
+  border: 15px solid red !important;
+}
+panel [part="content"]{
+  border: 15px solid red !important;
+}
+
+/* -- URL BAR -- */
+.search-one-offs{
+  display: none !important;
+}
+.urlbarView-results>div{
+/*   opacity: 0 !important; */
+  padding: 0px !important;
+}
+
+.urlbar-input-box{
+  padding-left: 0.rem !important;
+}
+
+
+
+/* -- Bookmarks -- */
+/* arrowscrollbox{
+    border-radius: 0.4px !important;
+}
+
+ */
+
+.bookmark-item>.menu-right{
+  display: none;
+}
+#PersonalToolbar{
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+.bookmark-item menupopup{
+  margin-left: 2px !important;
+  margin-top: -14px !important;
+}
+menupopup>.bookmark-item {
+  padding: 0.0rem 0.2rem !important;
+  min-height: 0px !important;;
+  height: 1.4rem !important;
+/*   margin: -0.35rem 0rem !important; */
+}
+.openintabs-menuitem {
+  display: none;
+}
+
+
+
+/* TOP BAR */
+vbox#titlebar{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  
+}
+
+vbox#titlebar xul|label{
+  margin-block: unset !important;
+  margin-inline: unset !important;
+}
+
+/* SIDE BAR */
+#sidebar-box{
+  overflow:unset !important;
+  min-width: 40px !important;
+  max-width: none !important;
+}
+#sidebar-box *{
+  min-width: 0px !important;
+}
+/*
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+    visibility: collapse !important;
+}*/
+
+
+/* #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+  overflow: hidden;
+  min-width: 40px;
+  max-width: 40px;
+  transition: all 0.2s ease;
+  border-right: 1px solid #0c0c0d;
+  z-index: 2;
+}
+
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover,
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
+  min-width: 260px !important;
+  max-width: 260px !important;
+  z-index: 1;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
