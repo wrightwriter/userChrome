@@ -14,7 +14,8 @@ const TST_STR_ON = `
     min-width: 40px !important;
     max-width: 40px !important;
     width: 40px !important;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease; 
+    pointer-events: none;
   }
   #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover
   /*
@@ -24,7 +25,8 @@ const TST_STR_ON = `
     min-width: 160px !important;
     max-width: 160px !important;
     width: 160px !important;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease; 
+    pointer-events: none;
     z-index: 1;
   }
 `;
@@ -32,63 +34,51 @@ const TST_STR_OFF = ` `;
 
 UC.TSTHack = {
   ENABLED: 'userChromeJS.tst.enabled',
+  STYLE: undefined,
+  
+  tstCallback: function (e) {
+    if(e.key == "F1"){
+      let enabled = xPref.get(this.ENABLED);
+      xPref.set(
+        this.ENABLED,
+        !enabled
+      );
+
+      this.setStyle( );  
+    } 
+  },
 
   init: function () {
-
-    // this.setStyle( true);  
     xPref.set(this.ENABLED, true, true);
-    // this.enabledListener = xPref.addListener(this.PREF_ENABLED, (isEnabled) => {
-    //   CustomizableUI.getWidget('status-dummybar').instances.forEach(dummyBar => {
-    //     dummyBar.node.setAttribute('collapsed', !isEnabled);
-    //   });
-    // });
-    
-    // -------- LISTEN FOR STATUS -------- // 
-    // this.textListener = xPref.addListener(this.PREF_STATUSTEXT, (isEnabled) => {
-    //   if (!UC.statusBar.enabled)
-    //     return;
 
-    //   _uc.windows((doc, win) => {
-    //     let StatusPanel = win.StatusPanel;
-    //     if (isEnabled)
-    //       win.statusbar.textNode.appendChild(StatusPanel._labelElement);
-    //     else
-    //       StatusPanel.panel.appendChild(StatusPanel._labelElement);
-    //   });
-    // });
-
-    this.setStyle( xPref.get(this.ENABLED) );  
+    this.setStyle(  );  
     
 
     // CustomizableUI.registerArea('status-bar', {});
-
     // Services.obs.addObserver(this, 'browser-delayed-startup-finished');
     
     Services.obs.addObserver(this, 'UCJS:WebExtLoaded')
   },
 
   exec: function (win) {
-    // alert("amogus");
     let document = win.document;
     let StatusPanel = win.StatusPanel;
 
-    document.addEventListener(
+    // alert("aaaa")
+    win.addEventListener(
       "keydown",
+      // this.tstCallback
       (e)=>{
-        // if(e.key = "F1"){
-        // if(true){
-          // alert("aaa")
-        // if(e.key = "F1"){
         if(e.key == "F1"){
           let enabled = xPref.get(this.ENABLED);
           xPref.set(
             this.ENABLED,
             !enabled
           );
-
-          this.setStyle( enabled );  
-        } 
-      } 
+    
+          this.setStyle( );  
+        }
+      }
       ,true
     );
 
@@ -109,9 +99,9 @@ UC.TSTHack = {
   // orig: Object.getOwnPropertyDescriptor(StatusPanel, '_label').set.toString(),
 
 
-  setStyle: function (
-    on 
-  ) {
+  setStyle: function () {
+    let on = xPref.get(this.ENABLED);
+
     if(this.STYLE){
       _uc.sss.unregisterSheet(this.STYLE.url, this.STYLE.type);
     }
@@ -149,25 +139,23 @@ UC.TSTHack = {
     //   statusbar.node.remove();
     // });
     // Services.obs.removeObserver(this, 'browser-delayed-startup-finished');
+
+    if(this.STYLE){
+      _uc.sss.unregisterSheet(this.STYLE.url, this.STYLE.type);
+    }
     
     _uc.windows((doc, win) => {
-      const { customElements } = win;
-
-      doc.removeEventListener('mousemove', this, false);
-      doc.documentElement.removeEventListener('mouseleave', this, false);
-
-      Object.defineProperty(customElements.get('tabbrowser-tab').prototype, '_selected', {
-        set: win.orig_selected,
-        configurable: true
-      });
-
-      win.removeEventListener('AppCommand', win.HandleAppCommandEvent, true);
-      win.HandleAppCommandEvent = win._HandleAppCommandEvent;
-      delete win._HandleAppCommandEvent;
-      win.addEventListener('AppCommand', win.HandleAppCommandEvent, true);
-
-      delete win.orig_selected;
+      win.removeEventListener(
+        "keydown",
+        this.tstCallback
+        ,true
+      );
     });
+
+    Services.obs.removeObserver(this, 'UCJS:WebExtLoaded');
+    // this.webExts.forEach(id => {
+    //   UC.webExts.get(id)?.messageManager.sendAsyncMessage('UCJS:MGest', 'destroy');
+    // });
 
     delete UC.TSTHack;
   }
